@@ -18,7 +18,33 @@ namespace modulespp {
 
         virtual void start() = 0;
         virtual void stop() = 0;
+
+        template <typename Service>
+            void register_service(const std::string &name,std::shared_ptr<Service> service)
+        {
+
+        }
+
+        template <typename Service>
+        std::shared_ptr<Service> get_service(const std::string &name)
+        {
+
+        }
+
+        template <typename Service>
+        void register_service(std::shared_ptr<Service> service)
+        {
+
+        }
+
+        template <typename Service>
+        std::shared_ptr<Service> get_service()
+        {
+
+        }
     };
+
+    typedef std::shared_ptr<module> module_ptr;
 
 }
 

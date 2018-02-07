@@ -5,13 +5,14 @@
 #ifndef MODULESPP_APPLICATION_H
 #define MODULESPP_APPLICATION_H
 
+#include "modules.h"
+
 #include <memory>
 #include <string>
 #include <list>
 #include <map>
+
 namespace modulespp {
-    class module;
-    typedef std::shared_ptr<module> module_ptr;
     class application
     {
     public:
