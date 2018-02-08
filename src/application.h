@@ -5,7 +5,7 @@
 #ifndef MODULESPP_APPLICATION_H
 #define MODULESPP_APPLICATION_H
 
-#include "modules.h"
+#include "module.h"
 
 #include <memory>
 #include <string>
