@@ -3,7 +3,7 @@
 //
 
 #include "CppUTest/TestHarness.h"
-#include "module.h"
+#include "../include/module.h"
 
 using namespace modulespp;
 
