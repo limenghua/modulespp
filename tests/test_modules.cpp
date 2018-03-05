@@ -5,6 +5,8 @@
 
 #include "CppUTest/TestHarness.h"
 
+using module::module_status;
+
 class service_interface
 {
 };
@@ -25,7 +27,7 @@ TEST(Module, constructor)
 
     CHECK(module.get_dependencies().empty());
 
-    CHECK(module.get_status() == module::mudule_status::unload);
+    CHECK(module.get_status() == module_status::inactive);
 
 }
 
@@ -40,4 +42,47 @@ TEST(Module, register_service)
     auto ret_ptr = module.get_service<service_interface>("service_name");
 
     CHECK(ret_ptr==service_ptr);
+}
+
+TEST(Module, start)
+{
+    module::module module("test_module");
+
+    CHECK(module.get_status() == module_status::inactive);
+
+    module.start();
+
+    CHECK(module.get_status() == module_status::active)
+
+    module.stop();
+
+    CHECK(module.get_status() == module_status::inactive);
+}
+
+TEST(Module, StartInCorrectShoudThrow)
+{
+    module::module module("test_module");
+
+    CHECK(module.get_status() == module_status::inactive);
+
+    module.start();
+
+    CHECK(module.get_status() == module_status::active)
+
+    CHECK_THROWS(std::runtime_error,module.start());
+}
+
+TEST(Module, StopInCorrectShoudThrow)
+{
+    module::module module("test_module");
+
+    CHECK(module.get_status() == module_status::inactive);
+    CHECK_THROWS(std::runtime_error,module.stop());
+
+    module.start();
+
+    CHECK(module.get_status() == module_status::active)
+
+    module.stop();
+    CHECK_THROWS(std::runtime_error,module.stop());
 }

@@ -13,13 +13,9 @@
 
 namespace module {
 
-    enum class mudule_status{
-        unload,
-        loaded,
-        starting,
-        started,
-        stopping,
-        stoped
+    enum class module_status{
+        active,
+        inactive
     };
 
     class module
@@ -27,7 +23,7 @@ namespace module {
     public:
         module(const std::string &name) :
             _name(name),
-            _status(mudule_status::unload)
+            _status(module_status::inactive)
         {
 
         }
@@ -38,10 +34,20 @@ namespace module {
             return _dependencies;
         };
 
-        virtual void start() {};
-        virtual void stop() {};
+        virtual void start() {
+            if(_status != module_status::inactive){
+                throw std::runtime_error("cannot do start once module already started");
+            }
+            _status = module_status::active;
+        };
+        virtual void stop() {
+            if(_status != module_status::active){
+                throw std::runtime_error("cannot do stop when module not stated");
+            }
+            _status = module_status::inactive;
+        };
 
-        mudule_status get_status()const{
+        module_status get_status()const{
             return _status;
         };
 
@@ -78,7 +84,7 @@ namespace module {
     private:
         std::string _name;
         std::list<std::string> _dependencies;
-        mudule_status _status;
+        module_status _status;
 
         util::safe_any_ptr_map _services;
     };
