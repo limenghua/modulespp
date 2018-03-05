@@ -1,48 +1,43 @@
 //
 // Created by limenghua on 18-2-8.
 //
+#include "module.h"
 
 #include "CppUTest/TestHarness.h"
-#include "../include/module.h"
 
-using namespace modulespp;
-
-class module_mock:public module
-{
-public:
-    virtual std::string get_name()override
-    {
-        return "module_mock";
-    }
-    virtual std::list<std::string> get_dependencies()override
-    {
-        return std::list<std::string>();
-    }
-    virtual void start() override
-    {
-
-    }
-    virtual void stop() override
-    {
-
-    }
-};
-
-TEST_GROUP(module)
+class service_interface
 {
 };
 
-TEST(module, create)
+class service_imp:public service_interface
 {
-    module_ptr module = std::make_shared<module_mock>();
+};
 
-    CHECK(module->get_name() == "module_mock");
+TEST_GROUP(Module)
+{
+};
+
+TEST(Module, constructor)
+{
+    module::module module("test_module");
+
+    CHECK(module.get_name() == "test_module");
+
+    CHECK(module.get_dependencies().empty());
+
+    CHECK(module.get_status() == module::mudule_status::unload);
+
 }
 
-TEST(module, register_service)
+TEST(Module, register_service)
 {
-    module_ptr module = std::make_shared<module_mock>();
+    module::module module("test_module");
 
-    auto service_ptr = std::make_shared<int>(100);
+    std::shared_ptr<service_interface> service_ptr = std::make_shared<service_imp>();
 
+    module.register_service<service_interface>("service_name",service_ptr);
+
+    auto ret_ptr = module.get_service<service_interface>("service_name");
+
+    CHECK(ret_ptr==service_ptr);
 }

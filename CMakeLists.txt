@@ -3,13 +3,13 @@ project(modulespp)
 
 set(CMAKE_CXX_STANDARD 14)
 
-include_directories(src)
+find_package(Boost 1.58.0 REQUIRED)
 
-add_subdirectory(tests)
+include_directories(include)
+include_directories(${BOOST_INCLUDEDIR})
 
 aux_source_directory(src DIR_MAIN_SRCS)
-set(DIR_MAIN_HEADERS,
-        src/module.h
-        src/application.h)
 
-add_library(modulespp SHARED ${DIR_MAIN_SRCS} ${DIR_MAIN_HEADERS})
+add_library(modulespp SHARED ${DIR_MAIN_SRCS})
+
+add_subdirectory(tests)

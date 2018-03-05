@@ -12,7 +12,7 @@
 #include <list>
 #include <map>
 
-namespace modulespp {
+namespace module {
     class application
     {
     public:
