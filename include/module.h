@@ -7,7 +7,7 @@
 
 #include <memory>
 #include <string>
-#include <list>
+#include <set>
 
 #include "any_ptr_map.h"
 
@@ -30,7 +30,7 @@ namespace module {
         std::string get_name()const{
             return _name;
         }
-        const std::list<std::string> & get_dependencies(){
+        const std::set<std::string> & get_dependencies(){
             return _dependencies;
         };
 
@@ -78,12 +78,12 @@ namespace module {
 
     protected:
         void add_dependencies(const std::string & denpendence){
-            _dependencies.push_back(denpendence);
+            _dependencies.insert(denpendence);
         }
 
-    private:
+    protected:
         std::string _name;
-        std::list<std::string> _dependencies;
+        std::set<std::string> _dependencies;
         module_status _status;
 
         util::safe_any_ptr_map _services;

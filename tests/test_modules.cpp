@@ -86,3 +86,21 @@ TEST(Module, StopInCorrectShoudThrow)
     module.stop();
     CHECK_THROWS(std::runtime_error,module.stop());
 }
+
+class module_mock:public module::module
+{
+public:
+    module_mock():
+        module::module("module_mock")
+    {
+        add_dependencies("core");
+    }
+};
+
+TEST(Module,GetDependency)
+{
+    module::module_ptr module_ptr = std::make_shared<module_mock>();
+    auto & dependencys = module_ptr->get_dependencies();
+    CHECK(dependencys.find("core") != dependencys.end());
+}
+
