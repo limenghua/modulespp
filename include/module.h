@@ -34,7 +34,8 @@ namespace module {
     public:
         module(const std::string &name) :
             _name(name),
-            _status(module_status::inactive)
+            _status(module_status::inactive),
+            _priority(priority::normal)
         {
 
         }
@@ -66,6 +67,10 @@ namespace module {
             }
 
             _denpend_modules[name]=m;
+        }
+
+        void clear_inject_modules(){
+            _denpend_modules.clear();
         }
 
         module_ptr get_module(const std::string & name){
