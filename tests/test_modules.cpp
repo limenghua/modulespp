@@ -104,3 +104,23 @@ TEST(Module,GetDependency)
     CHECK(dependencys.find("core") != dependencys.end());
 }
 
+TEST(Module,InjectDenpendency)
+{
+    module::module_ptr m = std::make_shared<module::module>("core");
+
+    module::module_ptr m2 = std::make_shared<module_mock>();
+
+    m2->inject_module(m);
+
+    auto module_ret = m2->get_module("core");
+
+    CHECK(module_ret == m);
+}
+
+TEST(Module,InjectNotDenpendencyShouldThrow)
+{
+    module::module_ptr m = std::make_shared<module::module>("core2");
+    module::module_ptr m2 = std::make_shared<module_mock>();
+    CHECK_THROWS(std::runtime_error,m2->inject_module(m));
+}
+
