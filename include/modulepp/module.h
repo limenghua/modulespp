@@ -9,7 +9,7 @@
 #include <string>
 #include <set>
 
-#include "any_ptr_map.h"
+#include "modulepp/details/any_ptr_map.h"
 
 namespace modulepp {
 
@@ -124,7 +124,7 @@ namespace modulepp {
             _priority = value;
         }
 
-    protected:
+    private:
         std::string _name;
         std::set<std::string> _dependence_names;
         module_status _status;

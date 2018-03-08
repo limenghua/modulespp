@@ -4,12 +4,14 @@
 
 #include "modulepp/application.h"
 #include "mock_modules.h"
-
+#include <iostream>
 
 #include "CppUTest/TestHarness.h"
 
 
 using namespace modulepp;
+
+//typedef modulepp::application_impl application;
 
 
 
@@ -34,7 +36,7 @@ TEST(Application,CanRegisterModule)
 
     app.register_module(test_moudle);
 
-    auto names=app.get_module_names();
+    std::list<std::string> names=app.get_module_names();
 
     CHECK(std::find(std::begin(names),std::end(names),test_moudle->get_name()) != std::end(names));
 

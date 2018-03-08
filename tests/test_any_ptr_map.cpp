@@ -1,4 +1,4 @@
-#include "modulepp/any_ptr_map.h"
+#include "modulepp/details/any_ptr_map.h"
 
 #include<CppUTest/TestHarness.h>
 
