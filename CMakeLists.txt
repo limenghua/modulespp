@@ -10,6 +10,6 @@ include_directories(${BOOST_INCLUDEDIR})
 
 aux_source_directory(src DIR_MAIN_SRCS)
 
-add_library(modulespp SHARED ${DIR_MAIN_SRCS} include/topo_sorting.h)
+add_library(modulespp SHARED ${DIR_MAIN_SRCS} include/modulepp/topo_sorting.h)
 
 add_subdirectory(tests)

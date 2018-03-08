@@ -5,7 +5,7 @@
 #ifndef MODULESPP_MOCK_MODULES_H
 #define MODULESPP_MOCK_MODULES_H
 
-#include "module.h"
+#include "modulepp/module.h"
 
 #include "CppUTestExt/MockSupport.h"
 
