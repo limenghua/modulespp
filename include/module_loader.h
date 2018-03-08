@@ -8,7 +8,7 @@
 #include <list>
 #include "module.h"
 
-namespace module{
+namespace modulepp{
     class module_loader{
     public:
         std::list<module_ptr> get_all_modules()=0;

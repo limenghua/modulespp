@@ -5,7 +5,7 @@
 
 #include "CppUTest/TestHarness.h"
 
-using module::module_status;
+using namespace modulepp;
 
 class service_interface
 {
@@ -21,7 +21,7 @@ TEST_GROUP(Module)
 
 TEST(Module, constructor)
 {
-    module::module module("test_module");
+    module module("test_module");
 
     CHECK(module.get_name() == "test_module");
 
@@ -33,7 +33,7 @@ TEST(Module, constructor)
 
 TEST(Module, register_service)
 {
-    module::module module("test_module");
+    module module("test_module");
 
     std::shared_ptr<service_interface> service_ptr = std::make_shared<service_imp>();
 
@@ -46,7 +46,7 @@ TEST(Module, register_service)
 
 TEST(Module, start)
 {
-    module::module module("test_module");
+    module module("test_module");
 
     CHECK(module.get_status() == module_status::inactive);
 
@@ -61,7 +61,7 @@ TEST(Module, start)
 
 TEST(Module, StartInCorrectShoudThrow)
 {
-    module::module module("test_module");
+    module module("test_module");
 
     CHECK(module.get_status() == module_status::inactive);
 
@@ -74,7 +74,7 @@ TEST(Module, StartInCorrectShoudThrow)
 
 TEST(Module, StopInCorrectShoudThrow)
 {
-    module::module module("test_module");
+    module module("test_module");
 
     CHECK(module.get_status() == module_status::inactive);
     CHECK_THROWS(std::runtime_error,module.stop());
@@ -87,7 +87,7 @@ TEST(Module, StopInCorrectShoudThrow)
     CHECK_THROWS(std::runtime_error,module.stop());
 }
 
-class module_mock:public module::module
+class module_mock:public module
 {
 public:
     module_mock():
@@ -99,16 +99,16 @@ public:
 
 TEST(Module,GetDependency)
 {
-    module::module_ptr module_ptr = std::make_shared<module_mock>();
+    module_ptr module_ptr = std::make_shared<module_mock>();
     auto & dependencys = module_ptr->get_dependencies();
     CHECK(dependencys.find("core") != dependencys.end());
 }
 
 TEST(Module,InjectDenpendency)
 {
-    module::module_ptr m = std::make_shared<module::module>("core");
+    module_ptr m = std::make_shared<module>("core");
 
-    module::module_ptr m2 = std::make_shared<module_mock>();
+    module_ptr m2 = std::make_shared<module_mock>();
 
     m2->inject_module(m);
 
@@ -119,8 +119,8 @@ TEST(Module,InjectDenpendency)
 
 TEST(Module,InjectNotDenpendencyShouldThrow)
 {
-    module::module_ptr m = std::make_shared<module::module>("core2");
-    module::module_ptr m2 = std::make_shared<module_mock>();
+    module_ptr m = std::make_shared<module>("core2");
+    module_ptr m2 = std::make_shared<module_mock>();
     CHECK_THROWS(std::runtime_error,m2->inject_module(m));
 }
 

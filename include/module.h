@@ -11,12 +11,13 @@
 
 #include "any_ptr_map.h"
 
-namespace module {
+namespace modulepp {
 
     enum class module_status{
         active,
         inactive
     };
+
     class priority{
     public:
         static const int earlest = 100;
@@ -85,6 +86,10 @@ namespace module {
             return _status;
         };
 
+        int get_priority()const {
+            return _priority;
+        }
+
         template <typename Service>
             void register_service(const std::string &name,std::shared_ptr<Service> service)
         {
@@ -113,6 +118,10 @@ namespace module {
     protected:
         void add_dependencies(const std::string & denpendence){
             _dependence_names.insert(denpendence);
+        }
+
+        void set_priority(int value){
+            _priority = value;
         }
 
     protected:

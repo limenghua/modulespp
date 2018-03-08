@@ -8,10 +8,10 @@
 #include "CppUTest/TestHarness.h"
 #include <memory>
 
-using module::application;
-using module::module;
+using modulepp::application;
+using modulepp::module;
 
-auto test_moudle = std::make_shared<module::module>("test_module");
+auto test_moudle = std::make_shared<module>("test_module");
 
 TEST_GROUP(Application)
 {
