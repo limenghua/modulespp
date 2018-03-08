@@ -20,6 +20,11 @@ TEST_GROUP(Application)
         mock().clear();
     }
 
+    module_ptr m1=std::make_shared<module_b1>();
+    module_ptr m2=std::make_shared<module_b2>();
+    module_ptr m2_1=std::make_shared<module_b2_1>();
+    module_ptr m3=std::make_shared<module_a3>();
+
 };
 
 TEST(Application,CanRegisterModule)
@@ -39,11 +44,6 @@ TEST(Application,CanRegisterModule)
 
 TEST(Application,StartShoudCallStartOfAllModules)
 {
-    module_ptr m1=std::make_shared<module_b1>();
-    module_ptr m2=std::make_shared<module_b2>();
-    module_ptr m2_1=std::make_shared<module_b2_1>();
-    module_ptr m3=std::make_shared<module_a3>();
-
     application app;
 
     app.register_module(m1);
@@ -59,5 +59,30 @@ TEST(Application,StartShoudCallStartOfAllModules)
     app.start();
 
     mock().checkExpectations();
+}
 
+TEST(Application,StopShoudCallStopOfAllModules)
+{
+    application app;
+
+    app.register_module(m1);
+    app.register_module(m2);
+    app.register_module(m2_1);
+    app.register_module(m3);
+
+    mock().expectOneCall("module_b1@start");
+    mock().expectOneCall("module_b2@start");
+    mock().expectOneCall("module_b2_1@start");
+    mock().expectOneCall("module_a3@start");
+
+    mock().expectOneCall("module_b1@stop");
+    mock().expectOneCall("module_b2@stop");
+    mock().expectOneCall("module_b2_1@stop");
+    mock().expectOneCall("module_a3@stop");
+
+    app.start();
+
+    app.stop();
+
+    mock().checkExpectations();
 }
