@@ -42,6 +42,10 @@ namespace modulepp {
         }
 
     private:
+        std::list<module_ptr> get_dependencys(module_ptr m);
+        void inject_all_dependency(module_ptr m);
+
+    private:
         std::map<std::string,module_ptr> _modules;
     };
 

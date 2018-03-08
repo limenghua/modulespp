@@ -3,24 +3,29 @@
 //
 
 #include "application.h"
-#include "module.h"
+#include "mock_modules.h"
+
 
 #include "CppUTest/TestHarness.h"
-#include <memory>
 
-using modulepp::application;
-using modulepp::module;
 
-auto test_moudle = std::make_shared<module>("test_module");
+using namespace modulepp;
+
+
 
 TEST_GROUP(Application)
 {
+    void teardown()
+    {
+        mock().clear();
+    }
 
 };
 
 TEST(Application,CanRegisterModule)
 {
     application app;
+    auto test_moudle = std::make_shared<module>("test_module");
 
     app.register_module(test_moudle);
 
@@ -29,5 +34,30 @@ TEST(Application,CanRegisterModule)
     CHECK(std::find(std::begin(names),std::end(names),test_moudle->get_name()) != std::end(names));
 
     auto ret_module = app.get_module(test_moudle->get_name());
+
+}
+
+TEST(Application,StartShoudCallStartOfAllModules)
+{
+    module_ptr m1=std::make_shared<module_b1>();
+    module_ptr m2=std::make_shared<module_b2>();
+    module_ptr m2_1=std::make_shared<module_b2_1>();
+    module_ptr m3=std::make_shared<module_a3>();
+
+    application app;
+
+    app.register_module(m1);
+    app.register_module(m2);
+    app.register_module(m2_1);
+    app.register_module(m3);
+
+    mock().expectOneCall("module_b1@start");
+    mock().expectOneCall("module_b2@start");
+    mock().expectOneCall("module_b2_1@start");
+    mock().expectOneCall("module_a3@start");
+
+    app.start();
+
+    mock().checkExpectations();
 
 }

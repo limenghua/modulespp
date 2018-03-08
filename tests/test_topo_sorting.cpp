@@ -4,6 +4,8 @@
 #include "module.h"
 #include "topo_sorting.h"
 
+#include "mock_modules.h"
+
 #include "CppUTest/TestHarness.h"
 
 using namespace modulepp;
@@ -14,42 +16,6 @@ TEST_GROUP(TopoSorting)
 };
 
 
-class module_b1:public module
-{
-public:
-    module_b1():
-        module("module_b1")
-    {
-    }
-};
-
-class module_b2:public module::module{
-public:
-    module_b2():
-        module("module_b2")
-    {
-        add_dependencies("module_b1");
-    }
-};
-
-class module_b2_1:public module::module{
-public:
-    module_b2_1():
-        module("module_b2_1")
-    {
-        add_dependencies("module_b1");
-        set_priority(priority::earlest);
-    }
-};
-
-class module_a3:public module::module{
-public:
-    module_a3():
-        module("module_a3")
-    {
-        add_dependencies("module_b2");
-    }
-};
 
 TEST(TopoSorting,create_dependent_map)
 {

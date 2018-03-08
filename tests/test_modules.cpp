@@ -3,6 +3,8 @@
 //
 #include "module.h"
 
+#include "mock_modules.h"
+
 #include "CppUTest/TestHarness.h"
 
 using namespace modulepp;
@@ -87,15 +89,6 @@ TEST(Module, StopInCorrectShoudThrow)
     CHECK_THROWS(std::runtime_error,module.stop());
 }
 
-class module_mock:public module
-{
-public:
-    module_mock():
-        module::module("module_mock")
-    {
-        add_dependencies("core");
-    }
-};
 
 TEST(Module,GetDependency)
 {
