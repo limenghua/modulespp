@@ -93,13 +93,23 @@ namespace modulepp {
         template <typename Service>
             void register_service(const std::string &name,std::shared_ptr<Service> service)
         {
+            check_service_name(name);
             return _services.set<Service>(name,service);
         }
 
         template <typename Service>
         std::shared_ptr<Service> get_service(const std::string &name)
         {
-            return _services.get<Service>(name);
+            auto pos = name.rfind('.');
+            if(pos == name.npos || pos == 0 || pos == name.length()-1){
+                return _services.get<Service>(name);
+            }
+
+            std::string module_name=name.substr(0,pos);
+            std::string service_name=name.substr(pos+1);
+
+            return get_module(module_name)
+                    ->get_service<Service>(service_name);
 
         }
 
@@ -123,6 +133,14 @@ namespace modulepp {
         void set_priority(int value){
             _priority = value;
         }
+
+        void check_service_name(const std::string & name){
+            if(name.find_first_of(",.@/\\:;'") != name.npos){
+                throw std::runtime_error("service name illegle");
+            }
+        }
+
+
 
     private:
         std::string _name;

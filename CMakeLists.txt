@@ -8,8 +8,16 @@ find_package(Boost REQUIRED)
 include_directories(include)
 include_directories(${BOOST_INCLUDEDIR})
 
-aux_source_directory(src DIR_MAIN_SRCS)
+set(MODULE_HEADER_FILES
+  include/modulepp/application.h
+  include/modulepp/module.h
+  )
 
-add_library(modulespp SHARED ${DIR_MAIN_SRCS} include/modulepp/details/topo_sorting.h)
+set(MODULE_SOURCE_FILES
+  src/application.cpp
+  )
+
+
+add_library(modulespp SHARED ${MODULE_SOURCE_FILES} ${MODULE_HEADER_FILES})
 
 add_subdirectory(tests)

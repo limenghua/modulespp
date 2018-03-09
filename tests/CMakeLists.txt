@@ -1,5 +1,13 @@
-aux_source_directory(. DIR_TEST_SRCS)
+set(TEST_SOURCE_FILE
+   main.cpp
+   test_any_ptr_map.cpp
+   test_application.cpp
+   test_modules.cpp
+   test_topo_sorting.cpp
 
-add_executable(tests ${DIR_TEST_SRCS} test_topo_sorting.cpp mock_modules.h)
+   mock_modules.h
+        )
+
+add_executable(tests ${TEST_SOURCE_FILE})
 
 target_link_libraries(tests modulespp CppUTest CppUTestExt)

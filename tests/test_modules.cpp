@@ -110,6 +110,24 @@ TEST(Module,InjectDenpendency)
     CHECK(module_ret == m);
 }
 
+TEST(Module,GetServiceACrossInjectDenpendency)
+{
+    module_ptr m = std::make_shared<module>("core");
+
+    module_ptr m2 = std::make_shared<module_mock>();
+
+    m2->inject_module(m);
+
+    auto mock_service = std::make_shared<int>(100);
+    m->register_service<int>("age",mock_service);
+
+    auto ret1 = m->get_service<int>("age");
+    auto ret2 = m2->get_service<int>("core.age");
+
+    CHECK(ret1 == ret2);
+    CHECK(ret1 == mock_service);
+}
+
 TEST(Module,InjectNotDenpendencyShouldThrow)
 {
     module_ptr m = std::make_shared<module>("core2");
