@@ -101,8 +101,12 @@ namespace modulepp {
         std::shared_ptr<Service> get_service(const std::string &name)
         {
             auto pos = name.rfind('.');
-            if(pos == name.npos || pos == 0 || pos == name.length()-1){
+            if(pos == name.npos ){
                 return _services.get<Service>(name);
+            }
+
+            if(pos == 0 || pos == name.length()-1){
+                throw std::runtime_error("input service name illegle");
             }
 
             std::string module_name=name.substr(0,pos);
