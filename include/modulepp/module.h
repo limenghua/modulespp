@@ -100,21 +100,22 @@ namespace modulepp {
         template <typename Service>
         std::shared_ptr<Service> get_service(const std::string &name)
         {
-            auto pos = name.rfind('.');
-            if(pos == name.npos ){
-                return _services.get<Service>(name);
-            }
+            std::string module_name;
+            std::string service_name;
 
-            if(pos == 0 || pos == name.length()-1){
-                throw std::runtime_error("input service name illegle");
-            }
+            std::tie(module_name,service_name) = parse_service_name(name);
 
-            std::string module_name=name.substr(0,pos);
-            std::string service_name=name.substr(pos+1);
+            if(module_name.empty()){
+                if(service_name.empty()){
+                    return _services.get<Service>();
+                }
+                else{
+                    return _services.get<Service>(service_name);
+                }
+            }
 
             return get_module(module_name)
                     ->get_service<Service>(service_name);
-
         }
 
         template <typename Service>
@@ -144,7 +145,18 @@ namespace modulepp {
             }
         }
 
+        std::tuple<std::string,std::string> parse_service_name(const std::string & str)
+        {
+            auto pos = str.find('.');
+            if(pos == str.npos ){
+                return std::make_tuple(std::string(),str);
+            }
 
+            std::string module_name=str.substr(0,pos);
+            std::string service_name=str.substr(pos+1);
+
+            return std::make_tuple(module_name,service_name);
+        }
 
     private:
         std::string _name;

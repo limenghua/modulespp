@@ -3,3 +3,6 @@ target_link_libraries(hello_world modulespp)
 
 add_executable(register_service register_service.cpp)
 target_link_libraries(register_service modulespp)
+
+add_executable(module_depends module_depends.cpp )
+target_link_libraries(module_depends modulespp)
