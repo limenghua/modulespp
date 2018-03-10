@@ -6,6 +6,7 @@ set(CMAKE_CXX_STANDARD 14)
 find_package(Boost REQUIRED)
 
 include_directories(include)
+link_directories(lib)
 include_directories(${BOOST_INCLUDEDIR})
 
 set(MODULE_HEADER_FILES
@@ -19,7 +20,7 @@ set(MODULE_SOURCE_FILES
   src/static_module_loader.cpp)
 
 
-add_library(modulespp SHARED ${MODULE_SOURCE_FILES} ${MODULE_HEADER_FILES})
+add_library(modulespp STATIC ${MODULE_SOURCE_FILES} ${MODULE_HEADER_FILES})
 
 add_subdirectory(tests)
 add_subdirectory(examples)

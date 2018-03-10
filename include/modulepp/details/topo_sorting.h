@@ -7,6 +7,7 @@
 
 #include "modulepp/module.h"
 #include <map>
+#include <vector>
 #include <list>
 #include <set>
 #include <iostream>
