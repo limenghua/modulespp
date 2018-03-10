@@ -12,6 +12,10 @@ namespace modulepp{
 class static_module_loader{
 public:
     static_module_loader(module_ptr module){
+        register_module(module);
+    }
+
+    static void register_module(module_ptr module){
         _modules.push_back(module);
     }
 
