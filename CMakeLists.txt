@@ -15,9 +15,10 @@ set(MODULE_HEADER_FILES
 
 set(MODULE_SOURCE_FILES
   src/application.cpp
-  )
+        examples/hello_world.cpp)
 
 
 add_library(modulespp SHARED ${MODULE_SOURCE_FILES} ${MODULE_HEADER_FILES})
 
 add_subdirectory(tests)
+add_subdirectory(examples)
