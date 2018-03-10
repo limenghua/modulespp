@@ -6,3 +6,6 @@ target_link_libraries(register_service modulespp)
 
 add_executable(module_depends module_depends.cpp )
 target_link_libraries(module_depends modulespp)
+
+add_executable(static_module_loader static_module_loader.cpp )
+target_link_libraries(static_module_loader modulespp)

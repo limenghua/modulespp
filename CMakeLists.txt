@@ -11,11 +11,12 @@ include_directories(${BOOST_INCLUDEDIR})
 set(MODULE_HEADER_FILES
   include/modulepp/application.h
   include/modulepp/module.h
-  )
+  include/modulepp/static_module_loader.h
+)
 
 set(MODULE_SOURCE_FILES
   src/application.cpp
-        examples/hello_world.cpp)
+  src/static_module_loader.cpp)
 
 
 add_library(modulespp SHARED ${MODULE_SOURCE_FILES} ${MODULE_HEADER_FILES})
