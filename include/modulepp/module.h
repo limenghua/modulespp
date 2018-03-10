@@ -43,7 +43,7 @@ namespace modulepp {
         std::string get_name()const{
             return _name;
         }
-        const std::set<std::string> & get_dependencies(){
+        const std::set<std::string> & get_dependencies()const{
             return _dependence_names;
         };
 
@@ -74,7 +74,7 @@ namespace modulepp {
             _denpend_modules.clear();
         }
 
-        module_ptr get_module(const std::string & name){
+        module_ptr get_module(const std::string & name)const{
             auto it = _denpend_modules.find(name);
             if(it == _denpend_modules.end()){
                 throw std::runtime_error("module name not found");
