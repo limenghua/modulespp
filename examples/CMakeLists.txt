@@ -1,3 +1,5 @@
-add_executable(hello_world hello_world.cpp)
-
+add_executable(hello_world hello_world.cpp )
 target_link_libraries(hello_world modulespp)
+
+add_executable(register_service register_service.cpp)
+target_link_libraries(register_service modulespp)
