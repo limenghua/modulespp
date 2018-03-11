@@ -10,7 +10,7 @@ set(TEST_SOURCE_FILE
    test_application.cpp
    test_modules.cpp
    test_topo_sorting.cpp
-
+   test_plugin_config.cpp
    mock_modules.h
         )
 

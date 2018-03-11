@@ -13,7 +13,7 @@ set(MODULE_HEADER_FILES
   include/modulepp/application.h
   include/modulepp/module.h
   include/modulepp/static_module_loader.h
-)
+        include/modulepp/plugin_config.h)
 
 set(MODULE_SOURCE_FILES
   src/application.cpp
