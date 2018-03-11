@@ -3,6 +3,8 @@ project(modulespp)
 
 set(CMAKE_CXX_STANDARD 14)
 
+set_property(GLOBAL PROPERTY USE_FOLDERS ON)
+
 find_package(Boost REQUIRED)
 
 include_directories(include)
