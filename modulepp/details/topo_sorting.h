@@ -5,7 +5,7 @@
 #ifndef MODULESPP_TOPO_SORTING_H
 #define MODULESPP_TOPO_SORTING_H
 
-#include "modulepp/module.h"
+#include "../module.h"
 #include <map>
 #include <vector>
 #include <list>

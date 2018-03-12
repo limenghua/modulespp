@@ -2,7 +2,7 @@
 // Created by limenghua on 18-3-10.
 //
 
-#include "modulepp/static_module_loader.h"
+#include "static_module_loader.h"
 
 using namespace modulepp;
 

@@ -12,7 +12,7 @@ set(TEST_SOURCE_FILE
    test_topo_sorting.cpp
    test_plugin_config.cpp
    mock_modules.h
-        test_plugin_config_load.cpp)
+        test_plugin_config_load.cpp test_plugin_loader.cpp)
 
 add_executable(tests ${TEST_SOURCE_FILE})
 

@@ -7,20 +7,23 @@ set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
 find_package(Boost COMPONENTS filesystem REQUIRED)
 
-include_directories(include)
-link_directories(lib)
+include_directories(.)
 include_directories(${BOOST_INCLUDEDIR})
 
 
 set(MODULE_HEADER_FILES
-  include/modulepp/application.h
-  include/modulepp/module.h
-  include/modulepp/static_module_loader.h
-        include/modulepp/plugin_config.h)
+        modulepp/application.h
+        modulepp/module.h
+        modulepp/static_module_loader.h
+        modulepp/plugin_config.h
+        modulepp/plugin_loader.h
+        modulepp/details/plugin_loader_impl.h
+        )
 
 set(MODULE_SOURCE_FILES
-  src/application.cpp
-  src/static_module_loader.cpp)
+        modulepp/application.cpp
+        modulepp/static_module_loader.cpp
+        )
 
 
 add_library(modulespp STATIC ${MODULE_SOURCE_FILES} ${MODULE_HEADER_FILES})

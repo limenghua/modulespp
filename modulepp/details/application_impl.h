@@ -6,7 +6,7 @@
 #define MODULESPP_APPLICATION_IMPL_H
 
 #include "topo_sorting.h"
-#include <modulepp/module.h>
+#include "../module.h"
 
 namespace modulepp {
     class application_impl
