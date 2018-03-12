@@ -18,7 +18,7 @@ TEST(plugin_loader,load_plugin)
 {
     plugin_loader loader;
 
-    std::list<module_ptr> modules = loader.load_plugin("/home/limenghua/plugin");
+    std::list<module_ptr> modules = loader.load_plugins("/home/limenghua/plugin");
 
     CHECK(modules.empty());
 }

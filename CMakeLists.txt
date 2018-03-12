@@ -21,7 +21,6 @@ set(MODULE_HEADER_FILES
         )
 
 set(MODULE_SOURCE_FILES
-        modulepp/application.cpp
         modulepp/static_module_loader.cpp
         )
 
