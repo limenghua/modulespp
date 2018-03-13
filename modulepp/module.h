@@ -38,8 +38,10 @@ namespace modulepp {
             _status(module_status::inactive),
             _priority(priority::normal)
         {
-
         }
+
+        virtual ~module() {}
+
         std::string get_name()const{
             return _name;
         }
