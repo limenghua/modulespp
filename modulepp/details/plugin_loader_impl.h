@@ -13,7 +13,7 @@ namespace modulepp{
 
         class plugin_loader_impl{
         public:
-            std::list<module_ptr> load_plugins(const std::string & root_folder){
+            std::list<module_ptr> load_plugins(const std::string & plugin_folder){
                 return std::list<module_ptr>();
             }
 

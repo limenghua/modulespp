@@ -15,8 +15,8 @@ namespace plugin{
 
     class plugin_loader{
     public:
-        std::list<module_ptr> load_plugins(const std::string & root_folder){
-            return _impl->load_plugins(root_folder);
+        std::list<module_ptr> load_plugins(const std::string & plugin_folder){
+            return _impl->load_plugins(plugin_folder);
         }
 
     private:
