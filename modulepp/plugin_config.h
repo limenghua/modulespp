@@ -19,7 +19,7 @@ namespace  plugin{
             _name=value;
         }
 
-        std::string get_module_name(){
+        std::string get_module_name()const {
             return _name;
         }
 
@@ -27,11 +27,15 @@ namespace  plugin{
             _folder=value;
         }
 
-        std::string get_module_folder(){
+        std::string get_module_folder()const {
             return _folder;
         }
 
         module_propertys & get_module_propertys(){
+            return _property;
+        }
+
+        const module_propertys & get_module_propertys()const{
             return _property;
         }
 
