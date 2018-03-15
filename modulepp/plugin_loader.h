@@ -16,11 +16,10 @@ namespace plugin{
     class plugin_loader{
     public:
         std::list<module_ptr> load_plugins(const std::string & plugin_folder){
-            return _impl->load_plugins(plugin_folder);
+            plugin_loader_impl loader(plugin_folder);
+            return loader.load_plugins();
         }
 
-    private:
-        std::unique_ptr<plugin_loader_impl> _impl = std::make_unique<plugin_loader_impl>();
     };
 
 

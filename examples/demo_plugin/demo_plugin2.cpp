@@ -15,28 +15,28 @@ namespace my_namespace {
     using modulepp::plugin::plugin_module;
     using modulepp::plugin::plugin_config;
 
-    class demo_module:public plugin_module
+    class demo_module2:public plugin_module
     {
     public:
-        demo_module():
+        demo_module2():
                 plugin_module("demo_moduel"){
-            std::cout<<"demo module construct"<<std::endl;
+            std::cout<<"demo module2 construct"<<std::endl;
         }
 
-        ~demo_module(){
-            std::cout<<"demo module disstruct"<<std::endl;
+        ~demo_module2(){
+            std::cout<<"demo module2 disstruct"<<std::endl;
         }
 
         virtual void start()override {
             module::start();
-            std::cout<<"demo module start..."<<std::endl;
+            std::cout<<"demo module2 start..."<<std::endl;
 
             register_service<int>("age",std::make_shared<int>(100));
         }
 
         virtual void stop()override {
             module::stop();
-            std::cout<<"demo module start..."<<std::endl;
+            std::cout<<"demo module2 start..."<<std::endl;
         }
 
         virtual void set_config(plugin_config & config){
@@ -45,7 +45,7 @@ namespace my_namespace {
                 throw std::runtime_error("module name in config not match real name");
             }
 
-            std::cout<<"set config"<<std::endl;
+            std::cout<<"set config2"<<std::endl;
         }
 
     };
@@ -54,15 +54,9 @@ namespace my_namespace {
 
 // Exporting `my_namespace::plugin` variable with alias name `plugin`
 // (Has the same effect as `BOOST_DLL_ALIAS(my_namespace::plugin, plugin)`)
-    extern "C" BOOST_SYMBOL_EXPORT demo_module plugin_module;
-    demo_module plugin_module;
+    extern "C" BOOST_SYMBOL_EXPORT demo_module2 plugin_module;
+    demo_module2 plugin_module;
 
 
 } // namespace my_namespace
-
-
-
-
-
-
 

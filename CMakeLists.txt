@@ -18,7 +18,7 @@ set(MODULE_HEADER_FILES
         modulepp/plugin_config.h
         modulepp/plugin_loader.h
         modulepp/details/plugin_loader_impl.h
-        )
+        modulepp/plugin_module.h)
 
 set(MODULE_SOURCE_FILES
         modulepp/static_module_loader.cpp

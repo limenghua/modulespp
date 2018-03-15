@@ -16,4 +16,4 @@ set(TEST_SOURCE_FILE
 
 add_executable(tests ${TEST_SOURCE_FILE})
 
-target_link_libraries(tests modulespp ${CppUTest_LIBRARIES} )
+target_link_libraries(tests modulespp ${CppUTest_LIBRARIES} dl)
