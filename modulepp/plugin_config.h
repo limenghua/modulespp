@@ -40,7 +40,9 @@ namespace  plugin{
         }
 
         void load_propertys(const std::string & filename){
-            return boost::property_tree::read_json(filename, _property);
+            boost::property_tree::read_json(filename, _property);
+
+            _name = _property.get<std::string>("name");
         }
 
 

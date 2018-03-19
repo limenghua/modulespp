@@ -19,7 +19,7 @@ namespace my_namespace {
     {
     public:
         demo_module2():
-                plugin_module("demo_moduel"){
+                plugin_module("demo_module2"){
             std::cout<<"demo module2 construct"<<std::endl;
         }
 
@@ -39,14 +39,6 @@ namespace my_namespace {
             std::cout<<"demo module2 start..."<<std::endl;
         }
 
-        virtual void set_config(plugin_config & config){
-            std::string name = config.get_module_name();
-            if(! name.empty() && name != get_name()){
-                throw std::runtime_error("module name in config not match real name");
-            }
-
-            std::cout<<"set config2"<<std::endl;
-        }
 
     };
 

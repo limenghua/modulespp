@@ -31,7 +31,8 @@ namespace modulepp{
             std::string get_root_folder(){return _path;}
 
             std::string get_config_file(){
-                return get_root_folder() + "plugin.json";
+                auto path = boost::filesystem::path(_path) / "plugin.json";
+                return path.string();
             }
 
             std::list<module_ptr> load_plugins(){
@@ -40,7 +41,12 @@ namespace modulepp{
                 std::string config_file=get_config_file();
 
                 if(boost::filesystem::exists(config_file)){
-                    module_ptr module = load_plugin(config_file);
+
+                    plugin_config config;
+                    config.set_module_folder(_path);
+                    config.load_propertys(config_file);
+
+                    module_ptr module = load_plugin(config);
                     if(module){
                         modules.push_back(module);
                     }
@@ -53,9 +59,7 @@ namespace modulepp{
                 return modules;
             }
 
-            module_ptr load_plugin(std::string config_file){
-                plugin_config config;
-                config.load_propertys(config_file);
+            module_ptr load_plugin(plugin_config & config){
 
                 std::string module_name = config.get_module_name();
 
@@ -69,6 +73,8 @@ namespace modulepp{
                         );
 
                 std::shared_ptr<plugin_module> module = to_std(plugin);
+
+                module->set_config(config);
 
                 return module;
             }

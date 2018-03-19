@@ -16,7 +16,7 @@ namespace plugin{
     public:
         plugin_module(const std::string & name):module::module(name){}
 
-        virtual void set_config(plugin_config & config)=0;
+        virtual void set_config(plugin_config & config){};
     };
 
 
