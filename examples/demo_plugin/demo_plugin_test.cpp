@@ -43,8 +43,8 @@ int main(int argc, char* argv[]) {
 
     plugin =
             dll::import<plugin_module>(          // type of imported symbol is located between `<` and `>`
-                    lib_path / "demo_plugin2",                     // path to the library and library name
-                    "plugin_module",                                       // name of the symbol to import
+                    lib_path / "demo_plugin2",   // path to the library and library name
+                    "plugin_module",            // name of the symbol to import
                     dll::load_mode::append_decorations              // makes `libmy_plugin_sum.so` or `my_plugin_sum.dll` from `my_plugin_sum`
             );
 

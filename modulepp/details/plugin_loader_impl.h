@@ -28,33 +28,42 @@ namespace modulepp{
         public:
             plugin_loader_impl(const std::string & path):_path(path){}
 
+            std::string get_root_folder(){return _path;}
+
+            std::string get_config_file(){
+                return get_root_folder() + "plugin.json";
+            }
+
             std::list<module_ptr> load_plugins(){
                 std::list<module_ptr> modules;
 
-                std::list<std::string> dllFiles = load_all_dllFile();
-                for(auto & file:dllFiles){
-                    module_ptr m = load_module(file);
+                std::string config_file=get_config_file();
 
-                    if(m){
-                        modules.push_back(m);
+                if(boost::filesystem::exists(config_file)){
+                    module_ptr module = load_plugin(config_file);
+                    if(module){
+                        modules.push_back(module);
                     }
+
                 }
+
+                std::list<module_ptr> child_modules = load_sub_plugins();
+                modules.insert(modules.begin(),child_modules.begin(),child_modules.end());
+
                 return modules;
             }
 
-            std::list<std::string> load_all_dllFile(){
-                return std::list<std::string>{
-                        "demo_plugin",
-                        "demo_plugin2"
-                };
-            }
+            module_ptr load_plugin(std::string config_file){
+                plugin_config config;
+                config.load_propertys(config_file);
 
-            module_ptr load_module(const std::string &file){
+                std::string module_name = config.get_module_name();
+
                 boost::filesystem::path lib_path(_path);
 
                 boost::shared_ptr<plugin_module> plugin =
                         dll::import<plugin_module>(          // type of imported symbol is located between `<` and `>`
-                                lib_path / file,                     // path to the library and library name
+                                lib_path / module_name,      // path to the library and library name
                                 "plugin_module",                                       // name of the symbol to import
                                 dll::load_mode::append_decorations              // makes `libmy_plugin_sum.so` or `my_plugin_sum.dll` from `my_plugin_sum`
                         );
@@ -63,6 +72,39 @@ namespace modulepp{
 
                 return module;
             }
+
+            std::list<module_ptr> load_sub_plugins(){
+                std::list<module_ptr> modules;
+
+                std::list<std::string> sub_directory = get_sub_directory();
+
+                for(auto &sub:sub_directory){
+                    plugin_loader_impl loader(sub);
+
+                    std::list<module_ptr> m=loader.load_plugins();
+
+                    modules.insert(modules.begin(),m.begin(),m.end());
+                }
+
+                return modules;
+            }
+
+            std::list<std::string> get_sub_directory(){
+                using boost::filesystem::directory_iterator;
+
+                std::list<std::string> sub_folders;
+
+                directory_iterator end;
+                for(directory_iterator pos(_path);pos != end;pos++){
+                    if(boost::filesystem::is_directory(*pos)){
+                        sub_folders.push_back(pos->path().string());
+                    }
+                }
+
+
+                return sub_folders;
+            }
+
 
         private:
             std::string _path;
