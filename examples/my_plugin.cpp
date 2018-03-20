@@ -15,6 +15,18 @@ namespace my_namespace {
     using modulepp::plugin::plugin_module;
     using modulepp::plugin::plugin_config;
 
+    class cal_service{
+    public:
+        virtual int calculate(int a,int b) =0;
+    };
+
+    class service_add:public cal_service{
+    public:
+        virtual int calculate(int a,int b)override {
+            return a+b;
+        }
+    };
+
     class my_plugin:public plugin_module
     {
     public:
@@ -32,6 +44,7 @@ namespace my_namespace {
             std::cout<<"my_plugin start..."<<std::endl;
 
             register_service<int>("age",std::make_shared<int>(100));
+            register_service<cal_service>("add",std::make_shared<service_add>());
         }
 
         virtual void stop()override {
