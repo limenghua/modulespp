@@ -12,5 +12,10 @@
 #include <modulepp/loader/plugin_loader.h>
 #include <modulepp/loader/static_module_loader.h>
 
+namespace modulepp{
+    using plugin_module = plugin::plugin_module;
+    using plugin_loader = loader::plugin_loader;
+}
+
 
 #endif //MODULESPP_MODULEPP_H
