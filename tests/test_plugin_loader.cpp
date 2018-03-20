@@ -2,12 +2,13 @@
 // Created by limenghua on 18-3-12.
 //
 
-#include <modulepp/plugin_loader.h>
-#include <modulepp/details/plugin_loader_impl.h>
+#include <modulepp/loader/plugin_loader.h>
+#include <modulepp/loader/details/plugin_loader_impl.h>
 
 #include "CppUTest/TestHarness.h"
 
 using namespace modulepp::plugin;
+using namespace modulepp::loader;
 using namespace modulepp;
 
 TEST_GROUP(plugin_loader)

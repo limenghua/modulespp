@@ -16,4 +16,14 @@ set(TEST_SOURCE_FILE
 
 add_executable(tests ${TEST_SOURCE_FILE})
 
-target_link_libraries(tests modulespp ${CppUTest_LIBRARIES} dl)
+message(STATUS "operation system is ${CMAKE_SYSTEM}")
+
+IF (CMAKE_SYSTEM_NAME MATCHES "Linux")
+    set(SYSTEM_LIB dl)
+ELSEIF (CMAKE_SYSTEM_NAME MATCHES "Windows")
+    set(SYSTEM_LIB)
+ELSE ()
+    MESSAGE(STATUS "not suported platform: ${CMAKE_SYSTEM_NAME}")
+ENDIF (CMAKE_SYSTEM_NAME MATCHES "Linux")
+
+target_link_libraries(tests modulespp ${CppUTest_LIBRARIES} ${SYSTEM_LIB})

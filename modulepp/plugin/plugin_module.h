@@ -5,8 +5,8 @@
 #ifndef MODULESPP_MODULE_CREATOR_H
 #define MODULESPP_MODULE_CREATOR_H
 
-#include "module.h"
-#include "plugin_config.h"
+#include <modulepp/module.h>
+#include <modulepp/plugin/plugin_config.h>
 
 #include <memory>
 

@@ -4,7 +4,7 @@
 
 #ifndef MODULESPP_STATKC_MODULE_LOADER_H
 #define MODULESPP_STATKC_MODULE_LOADER_H
-#include "module.h"
+#include "modulepp/module.h"
 #include <list>
 
 namespace modulepp{

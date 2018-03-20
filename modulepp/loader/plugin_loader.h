@@ -4,14 +4,14 @@
 
 #ifndef MODULESPP_PLUGIN_LOADER_H
 #define MODULESPP_PLUGIN_LOADER_H
-#include "module.h"
+#include "modulepp/module.h"
 #include "details/plugin_loader_impl.h"
 #include <list>
 #include <string>
 #include <memory>
 
 namespace modulepp{
-namespace plugin{
+namespace loader{
 
     class plugin_loader{
     public:

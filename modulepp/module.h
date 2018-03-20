@@ -9,7 +9,7 @@
 #include <string>
 #include <set>
 
-#include "details/any_ptr_map.h"
+#include <modulepp/details/any_ptr_map.h>
 
 namespace modulepp {
 

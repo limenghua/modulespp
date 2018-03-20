@@ -1,7 +1,7 @@
 //
 // Created by limenghua on 18-3-11.
 //
-#include <modulepp/plugin_config.h>
+#include <modulepp/plugin/plugin_config.h>
 
 #include "CppUTest/TestHarness.h"
 

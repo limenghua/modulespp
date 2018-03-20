@@ -14,14 +14,14 @@ include_directories(${BOOST_INCLUDEDIR})
 set(MODULE_HEADER_FILES
         modulepp/application.h
         modulepp/module.h
-        modulepp/static_module_loader.h
-        modulepp/plugin_config.h
-        modulepp/plugin_loader.h
-        modulepp/details/plugin_loader_impl.h
-        modulepp/plugin_module.h)
+        modulepp/loader/static_module_loader.h
+        modulepp/plugin/plugin_config.h
+        modulepp/loader/plugin_loader.h
+        modulepp/loader/details/plugin_loader_impl.h
+        modulepp/plugin/plugin_module.h modulepp/modulepp.h)
 
 set(MODULE_SOURCE_FILES
-        modulepp/static_module_loader.cpp
+        modulepp/loader/static_module_loader.cpp
         )
 
 

@@ -5,7 +5,7 @@
 #include <iostream>
 #include <modulepp/application.h>
 #include <modulepp/module.h>
-#include <modulepp/static_module_loader.h>
+#include <modulepp/loader/static_module_loader.h>
 
 using namespace modulepp;
 

@@ -5,9 +5,8 @@
 #ifndef MODULESPP_APPLICATION_H
 #define MODULESPP_APPLICATION_H
 
-#include "module.h"
-
-#include "details/application_impl.h"
+#include <modulepp/module.h>
+#include <modulepp/details/application_impl.h>
 
 #include <string>
 #include <list>

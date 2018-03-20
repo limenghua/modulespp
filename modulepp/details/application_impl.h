@@ -5,8 +5,8 @@
 #ifndef MODULESPP_APPLICATION_IMPL_H
 #define MODULESPP_APPLICATION_IMPL_H
 
-#include "topo_sorting.h"
-#include "../module.h"
+#include <modulepp/details/topo_sorting.h>
+#include <modulepp/module.h>
 
 namespace modulepp {
     class application_impl

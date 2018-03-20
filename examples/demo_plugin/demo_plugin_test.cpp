@@ -5,8 +5,9 @@
 #include <iostream>
 #include <boost/dll/import.hpp> // for import_alias
 #include "modulepp/module.h"
-#include "modulepp/plugin_config.h"
-#include "modulepp/plugin_loader.h"
+#include "modulepp/plugin/plugin_config.h"
+#include "modulepp/loader/plugin_loader.h"
+#include "modulepp/application.h"
 
 using namespace modulepp;
 
@@ -19,9 +20,20 @@ using namespace modulepp;
 
 int main(int argc, char* argv[]) {
 
-    boost::filesystem::path lib_path(argv[1]);          // argv[1] contains path to directory with our plugin library
+    modulepp::loader::plugin_loader loader;
+    auto modules = loader.load_plugins(argv[1]);
+
+    modulepp::application app;
 
 
+
+    for(auto & module:modules){
+        app.register_module(module);
+    }
+
+    app.start();
 
     std::cout<<"after plugin distruct"<<std::endl;
+
+    app.stop();
 }
