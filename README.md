@@ -18,13 +18,19 @@
   3. 设置环境变量BOOST_ROOT
   4. 下载编译CppUtest:http://cpputest.github.io/
   
-  cd download folder  
+    cd download folder
+    
+    md build
   
-  md build
+    cd build
   
-  cd build
-  
-  cmake ..
-  
-  打开CppUtest.sln,编译INSTALL项目，完成CppUtest库安装
+    cmake ..
 
+    使用管理员权限打开CppUtest.sln,编译INSTALL项目，编译成功后后会自动安装CppUtest库到系统目录，根据需要编译Release或Debug
+
+  5. 使用cmake 构建VS工程
+    md build
+	cd build
+	cmake ..
+
+  6. 打开VS工程编译运行调试
