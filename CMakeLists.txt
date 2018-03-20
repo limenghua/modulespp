@@ -5,11 +5,17 @@ set(CMAKE_CXX_STANDARD 14)
 
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
-find_package(Boost COMPONENTS filesystem system REQUIRED)
+IF (CMAKE_SYSTEM_NAME MATCHES "Linux")
+    find_package(Boost COMPONENTS filesystem system REQUIRED)
+ELSEIF (CMAKE_SYSTEM_NAME MATCHES "Windows")
+    find_package(Boost REQUIRED)
+ELSE ()
+    MESSAGE(STATUS "not suported platform: ${CMAKE_SYSTEM_NAME}")
+ENDIF (CMAKE_SYSTEM_NAME MATCHES "Linux")
 
 include_directories(.)
-include_directories(${BOOST_INCLUDEDIR})
-
+include_directories(${Boost_INCLUDE_DIRS})
+link_directories(${Boost_LIBRARY_DIRS})
 
 set(MODULE_HEADER_FILES
         modulepp/application.h
