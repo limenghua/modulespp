@@ -17,5 +17,3 @@ set_property(TARGET static_module_loader PROPERTY FOLDER "examples")
 add_library(my_plugin MODULE my_plugin.cpp)
 target_link_libraries(my_plugin modulespp)
 set_property(TARGET my_plugin PROPERTY FOLDER "examples")
-
-add_subdirectory(demo_plugin)

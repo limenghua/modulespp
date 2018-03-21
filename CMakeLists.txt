@@ -36,3 +36,4 @@ target_link_libraries(modulespp ${Boost_FILESYSTEM_LIBRARY} ${Boost_SYSTEM_LIBRA
 
 add_subdirectory(tests)
 add_subdirectory(examples)
+add_subdirectory(demo)
