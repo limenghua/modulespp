@@ -17,11 +17,12 @@ using namespace modulepp;
 
 namespace dll = boost::dll;
 using namespace modulepp;
+using modulepp::loader::plugin_loader;
 
 int main(int argc, char* argv[]) {
 
     modulepp::loader::plugin_loader loader;
-    auto modules = loader.load_plugins(argv[1]);
+    auto modules = plugin_loader::load_plugins(argv[1]);
 
     modulepp::application app;
 

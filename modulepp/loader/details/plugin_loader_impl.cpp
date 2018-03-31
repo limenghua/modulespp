@@ -1,11 +1,12 @@
 //
-// Created by limenghua on 18-3-12.
+// Created by limenghua on 18-3-31.
 //
 
-#ifndef MODULESPP_PLUGIN_LOADER_IMPL_H
-#define MODULESPP_PLUGIN_LOADER_IMPL_H
 #include <modulepp/module.h>
 #include <modulepp/plugin/plugin_module.h>
+
+#include <modulepp/loader/plugin_loader.h>
+
 
 #include <boost/dll/import.hpp> // for import_alias
 
@@ -122,8 +123,11 @@ namespace modulepp{
         };
 
 
-
+        std::list<module_ptr> plugin_loader::load_plugins(const std::string & plugin_folder){
+            plugin_loader_impl loader(plugin_folder);
+            return loader.load_plugins();
+        }
     }}
 
 
-#endif //MODULESPP_PLUGIN_LOADER_IMPL_H
+

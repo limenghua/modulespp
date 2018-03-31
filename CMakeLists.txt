@@ -23,12 +23,11 @@ set(MODULE_HEADER_FILES
         modulepp/loader/static_module_loader.h
         modulepp/plugin/plugin_config.h
         modulepp/loader/plugin_loader.h
-        modulepp/loader/details/plugin_loader_impl.h
         modulepp/plugin/plugin_module.h modulepp/modulepp.h)
 
 set(MODULE_SOURCE_FILES
         modulepp/loader/static_module_loader.cpp
-        )
+        modulepp/loader/details/plugin_loader_impl.cpp)
 
 
 add_library(modulespp STATIC ${MODULE_SOURCE_FILES} ${MODULE_HEADER_FILES})
