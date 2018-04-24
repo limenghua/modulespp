@@ -13,28 +13,36 @@ using namespace modulepp;
 
 #include <iostream>
 
-
-
 namespace dll = boost::dll;
 using namespace modulepp;
 using modulepp::loader::plugin_loader;
 
 int main(int argc, char* argv[]) {
+	std::string plugin_folder = ".";
+	if (argc >= 2) {
+		plugin_folder = argv[1];
+	}
 
-    modulepp::loader::plugin_loader loader;
-    auto modules = plugin_loader::load_plugins(argv[1]);
+	try {
+		modulepp::loader::plugin_loader loader;
+		auto modules = plugin_loader::load_plugins(plugin_folder);
 
-    modulepp::application app;
+		modulepp::application app;
 
+		for (auto & module : modules) {
+			app.register_module(module);
+		}
 
+		app.start();
 
-    for(auto & module:modules){
-        app.register_module(module);
-    }
+		std::cout << "after plugin distruct" << std::endl;
 
-    app.start();
+		app.stop();
+	}
+	catch (std::exception & e) {
+		std::cout << "faild with exeption: " << e.what() << std::endl;
+		return -1;
+	}
 
-    std::cout<<"after plugin distruct"<<std::endl;
-
-    app.stop();
+	return 0;
 }
