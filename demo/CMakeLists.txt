@@ -1,6 +1,7 @@
 set(CMAKE_CXX_VISIBILITY_PRESET hidden)
 
 include_directories(${BOOST_INCLUDEDIR})
+include_directories(.)
 
 add_executable(demo main.cpp)
 
@@ -19,3 +20,4 @@ INSTALL(TARGETS demo
 )
 
 add_subdirectory(plugins)
+add_subdirectory(core)

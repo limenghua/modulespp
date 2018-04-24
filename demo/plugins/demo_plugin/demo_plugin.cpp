@@ -8,6 +8,7 @@
 #include "modulepp/module.h"
 #include "modulepp/plugin/plugin_config.h"
 #include "modulepp/plugin/plugin_module.h"
+#include "core/service.h"
 
 namespace my_namespace {
 
@@ -20,7 +21,9 @@ namespace my_namespace {
     public:
         demo_module():
                 plugin_module("demo_module"){
+            add_dependencies("core");
             std::cout<<"demo module construct"<<std::endl;
+
         }
 
         ~demo_module(){
@@ -28,8 +31,13 @@ namespace my_namespace {
         }
 
         virtual void start()override {
+			auto service = get_service<core::service>("core.service");
+
+			std::string dec = service->describe();
+
             module::start();
             std::cout<<"demo module start..."<<std::endl;
+			std::cout << "get describe from core is:"<< dec << std::endl;
 
             register_service<int>("age",std::make_shared<int>(100));
         }
