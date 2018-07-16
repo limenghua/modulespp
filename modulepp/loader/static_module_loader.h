@@ -16,15 +16,18 @@ public:
     }
 
     static void register_module(module_ptr module){
-        _modules.push_back(module);
+         get_container().push_back(module);
     }
 
     static std::list<module_ptr> load_all_modules(){
-        return std::move(_modules);
+        return std::move(get_container());
     }
 
-private:
-    static std::list<module_ptr> _modules;
+    static std::list<module_ptr> & get_container()
+    {
+        static std::list<module_ptr> modules;
+        return modules;
+    }
 };
 
 

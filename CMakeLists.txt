@@ -26,7 +26,6 @@ set(MODULE_HEADER_FILES
         modulepp/plugin/plugin_module.h modulepp/modulepp.h)
 
 set(MODULE_SOURCE_FILES
-        modulepp/loader/static_module_loader.cpp
         modulepp/loader/details/plugin_loader_impl.cpp)
 
 
