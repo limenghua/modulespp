@@ -3,7 +3,7 @@ set(CMAKE_CXX_VISIBILITY_PRESET hidden)
 include_directories(${BOOST_INCLUDEDIR})
 
 add_library(demo_plugin MODULE demo_plugin.cpp )
-target_link_libraries(demo_plugin modulespp)
+target_link_libraries(demo_plugin ${Boost_FILESYSTEM_LIBRARY} ${Boost_SYSTEM_LIBRARY})
 set_property(TARGET demo_plugin PROPERTY FOLDER "demo")
 
 INSTALL(TARGETS demo_plugin

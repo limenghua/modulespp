@@ -26,4 +26,5 @@ ELSE ()
     MESSAGE(STATUS "not suported platform: ${CMAKE_SYSTEM_NAME}")
 ENDIF (CMAKE_SYSTEM_NAME MATCHES "Linux")
 
-target_link_libraries(tests modulespp ${CppUTest_LIBRARIES} ${SYSTEM_LIB})
+target_link_libraries(tests ${Boost_FILESYSTEM_LIBRARY} ${Boost_SYSTEM_LIBRARY} ${CppUTest_LIBRARIES} ${SYSTEM_LIB})
+

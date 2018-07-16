@@ -5,8 +5,6 @@
 #include <modulepp/module.h>
 #include <modulepp/plugin/plugin_module.h>
 
-#include <modulepp/loader/plugin_loader.h>
-
 
 #include <boost/dll/import.hpp> // for import_alias
 
@@ -123,7 +121,7 @@ namespace modulepp{
         };
 
 
-        std::list<module_ptr> plugin_loader::load_plugins(const std::string & plugin_folder){
+        inline std::list<module_ptr> plugin_loader::load_plugins(const std::string & plugin_folder){
             plugin_loader_impl loader(plugin_folder);
             return loader.load_plugins();
         }

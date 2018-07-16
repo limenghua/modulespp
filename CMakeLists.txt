@@ -17,20 +17,6 @@ include_directories(.)
 include_directories(${Boost_INCLUDE_DIRS})
 link_directories(${Boost_LIBRARY_DIRS})
 
-set(MODULE_HEADER_FILES
-        modulepp/application.h
-        modulepp/module.h
-        modulepp/loader/static_module_loader.h
-        modulepp/plugin/plugin_config.h
-        modulepp/loader/plugin_loader.h
-        modulepp/plugin/plugin_module.h modulepp/modulepp.h)
-
-set(MODULE_SOURCE_FILES
-        modulepp/loader/details/plugin_loader_impl.cpp)
-
-
-add_library(modulespp STATIC ${MODULE_SOURCE_FILES} ${MODULE_HEADER_FILES})
-target_link_libraries(modulespp ${Boost_FILESYSTEM_LIBRARY} ${Boost_SYSTEM_LIBRARY})
 
 add_subdirectory(tests)
 add_subdirectory(examples)

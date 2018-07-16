@@ -14,11 +14,12 @@ namespace loader{
 
     class plugin_loader{
     public:
-        static std::list<module_ptr> load_plugins(const std::string & plugin_folder);
+        static inline std::list<module_ptr> load_plugins(const std::string & plugin_folder);
 
     };
 
 }}
 
+#include <modulepp/loader/details/plugin_loader_impl.ipp>
 
 #endif //MODULESPP_PLUGIN_LOADER_H
