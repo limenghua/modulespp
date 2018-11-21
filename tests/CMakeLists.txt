@@ -29,3 +29,5 @@ add_executable(tests ${TEST_SOURCE_FILE})
 
 target_link_libraries(tests ${Boost_FILESYSTEM_LIBRARY} ${Boost_SYSTEM_LIBRARY} ${CppUTest_LIBRARIES} ${SYSTEM_LIB})
 
+add_test(modulepp tests)
+
