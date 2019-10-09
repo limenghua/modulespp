@@ -54,7 +54,7 @@ TEST(Module, start)
 
     module.start();
 
-    CHECK(module.get_status() == module_status::active)
+    CHECK(module.get_status() == module_status::active);
 
     module.stop();
 
@@ -69,7 +69,7 @@ TEST(Module, StartInCorrectShoudThrow)
 
     module.start();
 
-    CHECK(module.get_status() == module_status::active)
+    CHECK(module.get_status() == module_status::active);
 
     CHECK_THROWS(std::runtime_error,module.start());
 }
@@ -83,7 +83,7 @@ TEST(Module, StopInCorrectShoudThrow)
 
     module.start();
 
-    CHECK(module.get_status() == module_status::active)
+    CHECK(module.get_status() == module_status::active);
 
     module.stop();
     CHECK_THROWS(std::runtime_error,module.stop());
